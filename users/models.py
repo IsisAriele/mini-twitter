@@ -6,5 +6,9 @@ class CustomUser(AbstractUser):
     bio = models.TextField(blank=True, null=True)
     profile_picture = models.ImageField(upload_to='profile_picture/', blank=True, null=True)
 
+    class Meta:
+        verbose_name = 'Custom User'
+        verbose_name_plural = 'Custom Users'
+
     def __str__(self):
-        return self.username
+        return f"{self.username} - {self.email}"

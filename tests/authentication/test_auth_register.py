@@ -22,3 +22,57 @@ class TestAuthRegister(TestCase):
         )
 
         self.assertEqual(response.status_code, 201)
+
+    def test_should_return_error_when_mandatory_fields_are_missing(self):
+        response = self.client.post(
+            "/auth/register/",
+            {
+                "username": "",
+                "password": "",
+                "name": "",
+                "email": ""
+            }
+        )
+
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.data["username"][0], "This field may not be blank."),
+        self.assertEqual(response.data["password"][0], "This field may not be blank."),
+        self.assertEqual(response.data["name"][0], "This field may not be blank."),
+        self.assertEqual(response.data["email"][0], "This field may not be blank."),
+
+
+    def test_should_return_error_when_email_is_invalid(self):
+        response = self.client.post(
+            "/auth/register/",
+            {
+                "username": "testuser",
+                "password": "testuserpassword",
+                "name": "Test User",
+                "email": "test"
+            }
+        )
+
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.data["email"][0], "Enter a valid email address.")
+
+    def test_should_return_error_when_username_and_email_already_exists(self):
+        CustomUser.objects.create(
+            username="testuser",
+            password="testuserpassword",
+            name="Test User",
+            email="test@user.com"
+        )
+         
+        response = self.client.post(
+            "/auth/register/",
+            {
+                "username": "testuser",
+                "password": "testuserpassword",
+                "name": "Test User",
+                "email": "test@user.com"
+            }
+        )
+
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.data["username"][0], "A user with that username already exists.")
+        self.assertEqual(response.data["email"][0], "Custom User with this email already exists.")

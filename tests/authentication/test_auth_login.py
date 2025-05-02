@@ -5,7 +5,7 @@ from rest_framework.test import APIClient
 class TestAuthLogin(TestCase):
     def setUp(self):
         self.client = APIClient()
-        CustomUser.objects.create(
+        CustomUser.objects.create_user(
             username="testuser",
             password="testuserpassword",
             name="Test User",

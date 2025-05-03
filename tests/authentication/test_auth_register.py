@@ -77,4 +77,4 @@ class TestAuthRegister(TestCase):
 
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.data["username"][0], "A user with that username already exists.")
-        self.assertEqual(response.data["email"][0], "Custom User with this email already exists.")
+        self.assertEqual(response.data["email"][0], "User Model with this email already exists.")

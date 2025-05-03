@@ -1,5 +1,5 @@
 from django.test import TestCase
-from users.models import CustomUser
+from users.models import UserModel
 from rest_framework.test import APIClient
 
 
@@ -8,7 +8,7 @@ class TestAuthRegister(TestCase):
         self.client = APIClient()
 
     def test_should_register_user_successfully(self):
-        user = CustomUser.objects.filter(username="testuser", email="test@user.com").first()
+        user = UserModel.objects.filter(username="testuser", email="test@user.com").first()
         self.assertIsNone(user)
         
         response = self.client.post(
@@ -22,7 +22,7 @@ class TestAuthRegister(TestCase):
         )
 
         self.assertEqual(response.status_code, 201)
-        user = CustomUser.objects.filter(username="testuser", email="test@user.com").first()
+        user = UserModel.objects.filter(username="testuser", email="test@user.com").first()
         self.assertIsNotNone(user)
 
     def test_should_return_error_when_mandatory_fields_are_missing(self):
@@ -58,7 +58,7 @@ class TestAuthRegister(TestCase):
         self.assertEqual(response.data["email"][0], "Enter a valid email address.")
 
     def test_should_return_error_when_username_and_email_already_exists(self):
-        CustomUser.objects.create(
+        UserModel.objects.create(
             username="testuser",
             password="testuserpassword",
             name="Test User",

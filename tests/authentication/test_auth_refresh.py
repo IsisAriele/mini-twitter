@@ -1,11 +1,11 @@
 from django.test import TestCase
-from users.models import CustomUser
+from users.models import UserModel
 from rest_framework.test import APIClient
 
 class TestAuthRefresh(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.user = CustomUser.objects.create_user(
+        self.user = UserModel.objects.create_user(
             username="testuser",
             password="testuserpassword",
             name="Test User",

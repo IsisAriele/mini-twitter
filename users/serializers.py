@@ -20,11 +20,8 @@ class UserModelSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
-
-class UserModelMeSerializer(serializers.ModelSerializer):
+class UserModelDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserModel
         fields = ['username', 'name', 'profile_picture', 'bio']
-
-        
 

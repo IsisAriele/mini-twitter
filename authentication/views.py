@@ -3,6 +3,7 @@ from users.serializers import UserModelSerializer
 from rest_framework.response import Response
 from rest_framework import status
 
+
 class CreateUserView(APIView):
     def post(self, request, format=None):
         serializer = UserModelSerializer(data=request.data)

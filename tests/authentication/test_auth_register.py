@@ -8,32 +8,30 @@ class TestAuthRegister(TestCase):
         self.client = APIClient()
 
     def test_should_register_user_successfully(self):
-        user = UserModel.objects.filter(username="testuser", email="test@user.com").first()
+        user = UserModel.objects.filter(
+            username="testuser", email="test@user.com"
+        ).first()
         self.assertIsNone(user)
-        
+
         response = self.client.post(
             "/auth/register/",
             {
                 "username": "testuser",
                 "password": "testuserpassword",
                 "name": "Test User",
-                "email": "test@user.com"
-            }
+                "email": "test@user.com",
+            },
         )
 
         self.assertEqual(response.status_code, 201)
-        user = UserModel.objects.filter(username="testuser", email="test@user.com").first()
+        user = UserModel.objects.filter(
+            username="testuser", email="test@user.com"
+        ).first()
         self.assertIsNotNone(user)
 
     def test_should_return_error_when_mandatory_fields_are_missing(self):
         response = self.client.post(
-            "/auth/register/",
-            {
-                "username": "",
-                "password": "",
-                "name": "",
-                "email": ""
-            }
+            "/auth/register/", {"username": "", "password": "", "name": "", "email": ""}
         )
 
         self.assertEqual(response.status_code, 400)
@@ -42,7 +40,6 @@ class TestAuthRegister(TestCase):
         self.assertEqual(response.data["name"][0], "This field may not be blank."),
         self.assertEqual(response.data["email"][0], "This field may not be blank."),
 
-
     def test_should_return_error_when_email_is_invalid(self):
         response = self.client.post(
             "/auth/register/",
@@ -50,8 +47,8 @@ class TestAuthRegister(TestCase):
                 "username": "testuser",
                 "password": "testuserpassword",
                 "name": "Test User",
-                "email": "test"
-            }
+                "email": "test",
+            },
         )
 
         self.assertEqual(response.status_code, 400)
@@ -62,19 +59,23 @@ class TestAuthRegister(TestCase):
             username="testuser",
             password="testuserpassword",
             name="Test User",
-            email="test@user.com"
+            email="test@user.com",
         )
-         
+
         response = self.client.post(
             "/auth/register/",
             {
                 "username": "testuser",
                 "password": "testuserpassword",
                 "name": "Test User",
-                "email": "test@user.com"
-            }
+                "email": "test@user.com",
+            },
         )
 
         self.assertEqual(response.status_code, 400)
-        self.assertEqual(response.data["username"][0], "A user with that username already exists.")
-        self.assertEqual(response.data["email"][0], "User Model with this email already exists.")
+        self.assertEqual(
+            response.data["username"][0], "A user with that username already exists."
+        )
+        self.assertEqual(
+            response.data["email"][0], "User Model with this email already exists."
+        )

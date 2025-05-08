@@ -1,0 +1,46 @@
+name: Django Tests with Docker Compose
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: Rodar testes
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout do código
+      uses: actions/checkout@v3
+
+    - name: Instalar Docker Compose
+      run: sudo apt-get update && sudo apt-get install -y docker-compose
+
+    - name: Subir serviços do docker-compose
+      run: docker-compose up -d db 
+
+    - name: Aguardar banco ficar pronto
+      run: |
+        echo "Esperando o banco iniciar..."
+        until docker exec $(docker ps -qf "name=db") pg_isready -U postgres; do
+          sleep 2
+        done
+
+    - name: Configurar Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Instalar dependências
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Rodar migrações e testes
+      run: |
+        python manage.py migrate
+        python manage.py test tests
+
+    - name: Finalizar containers
+      if: always()
+      run: docker-compose down

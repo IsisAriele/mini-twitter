@@ -12,9 +12,7 @@ class TestAuthRefresh(TestCase):
             name="Test User",
             email="test@user.com",
         )
-        login_response = self.client.post(
-            "/auth/login/", {"username": "testuser", "password": "testuserpassword"}
-        )
+        login_response = self.client.post("/auth/login/", {"username": "testuser", "password": "testuserpassword"})
         self.refresh_token = login_response.data["refresh"]
 
     def test_should_refresh_token_successfully(self):

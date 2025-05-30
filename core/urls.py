@@ -26,16 +26,16 @@ from drf_yasg import openapi
 from rest_framework import permissions
 
 schema_view = get_schema_view(
-   openapi.Info(
-      title="Mini Twitter API",
-      default_version='v1',
-      description="Documentação da API de rede social com Django REST",
-      terms_of_service="https://www.seusite.com/termos/",
-      contact=openapi.Contact(email="seuemail@exemplo.com"),
-      license=openapi.License(name="MIT License"),
-   ),
-   public=True,
-   permission_classes=(permissions.AllowAny if settings.DEBUG else permissions.IsAdminUser,)
+    openapi.Info(
+        title="Mini Twitter API",
+        default_version="v1",
+        description="Documentação da API de rede social com Django REST",
+        terms_of_service="https://www.seusite.com/termos/",
+        contact=openapi.Contact(email="seuemail@exemplo.com"),
+        license=openapi.License(name="MIT License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny if settings.DEBUG else permissions.IsAdminUser,),
 )
 
 urlpatterns = [
@@ -43,5 +43,5 @@ urlpatterns = [
     path("api-auth/", include("rest_framework.urls")),
     path("auth/", include(auth_urls)),
     path("users/", include(user_urls)),
-    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

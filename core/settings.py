@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-yv0@y*3qxin$^)rg8!wu(7hdkoi50if6se5eeeu7d6hogg9idt
 # SECURITY WARNING: don't run with debug turned on in production!
 IS_PRODUCTION = os.getenv("IS_PRODUCTION", "False")
 DEBUG = True if IS_PRODUCTION == "False" else False
-   
+
 
 ALLOWED_HOSTS = ["*"]
 
@@ -136,11 +136,7 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "users.UserModel"
 
-REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
-    )
-}
+REST_FRAMEWORK = {"DEFAULT_AUTHENTICATION_CLASSES": ("rest_framework_simplejwt.authentication.JWTAuthentication",)}
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"

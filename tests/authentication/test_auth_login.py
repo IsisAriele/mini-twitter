@@ -1,6 +1,7 @@
 from django.test import TestCase
-from users.models import UserModel
 from rest_framework.test import APIClient
+
+from users.models import UserModel
 
 
 class TestAuthLogin(TestCase):

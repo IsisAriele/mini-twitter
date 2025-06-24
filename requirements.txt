@@ -1,6 +1,8 @@
 annotated-types==0.7.0
 anyio==4.9.0
 asgiref==3.8.1
+astor==0.8.1
+astroid==3.3.10
 Authlib==1.6.0
 autoflake==2.3.1
 black==25.1.0
@@ -8,8 +10,9 @@ certifi==2025.4.26
 cffi==1.17.1
 charset-normalizer==3.4.2
 click==8.1.8
-coverage==7.9.1
+coverage==7.8.0
 cryptography==45.0.3
+dill==0.4.0
 Django==5.2
 django-axes==8.0.0
 django-filter==25.1
@@ -24,6 +27,7 @@ httpcore==1.0.9
 httpx==0.28.1
 idna==3.10
 inflection==0.5.1
+isort==6.0.1
 Jinja2==3.1.6
 joblib==1.5.1
 Markdown==3.8
@@ -41,12 +45,13 @@ platformdirs==4.3.8
 psutil==6.1.1
 psycopg2-binary==2.9.10
 pycodestyle==2.13.0
+pycparser==2.22
 pydantic==2.9.2
 pydantic_core==2.23.4
 pyflakes==3.3.2
-pycparser==2.22
 Pygments==2.19.1
 PyJWT==2.9.0
+pylint==3.3.7
 pytz==2025.2
 PyYAML==6.0.2
 regex==2024.11.6
@@ -64,5 +69,6 @@ tomlkit==0.13.3
 tqdm==4.67.1
 typer==0.16.0
 typing_extensions==4.14.0
-uritemplate==4.2.0
+uritemplate==4.1.1
 urllib3==2.4.0
+xxhash==3.5.0

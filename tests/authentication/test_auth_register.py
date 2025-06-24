@@ -1,5 +1,6 @@
 from django.test import TestCase
 from rest_framework.test import APIClient
+from tests.utils.get_user_data import get_default_user_data
 
 from users.models import UserModel
 
@@ -56,12 +57,7 @@ class TestAuthRegister(TestCase):
         self.assertEqual(response.data["email"][0], "Enter a valid email address.")
 
     def test_should_return_error_when_username_and_email_already_exists(self):
-        UserModel.objects.create(
-            username="testuser",
-            password="testuserpassword",
-            name="Test User",
-            email="test@user.com",
-        )
+        UserModel.objects.create(**get_default_user_data())
 
         response = self.client.post(
             "/auth/register/",

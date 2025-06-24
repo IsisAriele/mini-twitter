@@ -24,8 +24,11 @@ jobs:
     - name: Checagem de estilo
       run: make check-format
     
-    - name: Checagem de linter
+    - name: Checagem de linter 
       run: make lint
+
+    - name: Checagem de duplicações
+      run: make check-duplicate-code
 
   test:
     name: Rodar testes

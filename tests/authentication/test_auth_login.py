@@ -1,18 +1,13 @@
 from django.test import TestCase
 from rest_framework.test import APIClient
-
+from tests.utils.get_user_data import get_default_user_data
 from users.models import UserModel
 
 
 class TestAuthLogin(TestCase):
     def setUp(self):
         self.client = APIClient()
-        UserModel.objects.create_user(
-            username="testuser",
-            password="testuserpassword",
-            name="Test User",
-            email="test@user.com",
-        )
+        UserModel.objects.create_user(**get_default_user_data())
 
     def test_should_login_user_successfully(self):
         response = self.client.post(

@@ -7,3 +7,6 @@ check-format:
 
 lint:
 	python -m flake8 authentication core tests feed media posts users --ignore=E501
+
+check-duplicate-code:
+	pylint --disable=all --enable=similarities authentication core tests feed media posts users

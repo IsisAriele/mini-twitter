@@ -29,6 +29,10 @@ jobs:
 
     - name: Checagem de duplicações
       run: make check-duplicate-code
+    
+    - name: Checagem de code smells
+      run: make check-code-smells
+
 
   test:
     name: Rodar testes

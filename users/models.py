@@ -10,9 +10,9 @@ class UserModel(AbstractUser):
     )
     email = models.EmailField(unique=True)
 
-    class Meta:
-        verbose_name = "User Model"
-        verbose_name_plural = "Users Models"
+    # class Meta:
+    #     verbose_name = "User Model"
+    #     verbose_name_plural = "Users Models"
 
-    def __str__(self):
-        return f"{self.username} - {self.email}"
+    # def __str__(self):
+    #     return f"{self.username} - {self.email}"

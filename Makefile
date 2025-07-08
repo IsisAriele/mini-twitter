@@ -10,3 +10,7 @@ lint:
 
 check-duplicate-code:
 	pylint --disable=all --enable=similarities authentication core tests feed media posts users
+
+uml:
+	mkdir -p diagrams
+	pyreverse -o png -p backend users/models.py posts/models.py feed/models.py -d diagrams

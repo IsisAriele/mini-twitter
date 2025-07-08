@@ -37,10 +37,10 @@ class TestAuthRegister(TestCase):
         )
 
         self.assertEqual(response.status_code, 400)
-        self.assertEqual(response.data["username"][0], "This field may not be blank."),
-        self.assertEqual(response.data["password"][0], "This field may not be blank."),
-        self.assertEqual(response.data["name"][0], "This field may not be blank."),
-        self.assertEqual(response.data["email"][0], "This field may not be blank."),
+        self.assertEqual(response.data["username"][0], "This field may not be blank.")
+        self.assertEqual(response.data["password"][0], "This field may not be blank.")
+        self.assertEqual(response.data["name"][0], "This field may not be blank.")
+        self.assertEqual(response.data["email"][0], "This field may not be blank.")
 
     def test_should_return_error_when_email_is_invalid(self):
         response = self.client.post(

@@ -21,7 +21,7 @@ class UserDetailView(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
-    def get(self, request, username):
+    def get(self, username):
         try:
             user = UserModel.objects.get(username=username)
         except UserModel.DoesNotExist:

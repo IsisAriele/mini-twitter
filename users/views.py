@@ -11,6 +11,8 @@ from users.serializers import UserModelDetailSerializer
 class UserMeView(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         user_serializer = UserModelDetailSerializer(request.user)

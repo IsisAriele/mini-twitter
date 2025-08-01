@@ -9,6 +9,7 @@ class UserModel(AbstractUser):
         upload_to="profile_picture/", blank=True, null=True
     )
     email = models.EmailField(unique=True)
+    email = models.EmailField(unique=True)
 
     class Meta:
         verbose_name = "User Model"

@@ -14,6 +14,7 @@ class PostModel(models.Model):
     class Meta:
         verbose_name = "Post"
         verbose_name_plural = "Posts"
+        
 
 
     def __str__(self):

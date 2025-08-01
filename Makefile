@@ -18,3 +18,5 @@ uml:
 check-code-smells:
 	pylint --disable=C0114,C0115,C0116,R0903,C0301,C0103,E1101 --ignore=migrations authentication core tests feed media posts users
 
+check-security:
+	bandit -r authentication core feed media posts users

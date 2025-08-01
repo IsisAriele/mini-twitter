@@ -32,6 +32,10 @@ jobs:
     
     - name: Checagem de code smells
       run: make check-code-smells
+    
+    - name: Checagem de segurança
+      run: make check-security
+
 
 
   test:
